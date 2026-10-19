@@ -72,39 +72,39 @@ const DEFAULT_WEDDING_DATA = {
   gallery: [
     {
       id: "gal-1",
-      url: "assets/images/hero_wedding.jpg",
-      caption: "Under the Royal Palace Arch",
+      url: "assets/images/royal_couple.jpg",
+      caption: "The Royal Couple - Under the Palace Arch",
       category: "pre-wedding"
     },
     {
       id: "gal-2",
-      url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80",
-      caption: "Eternal Promises & Golden Garlands",
+      url: "assets/images/royal_mandap.jpg",
+      caption: "Sacred Mandap & Pheras by Twilight",
       category: "wedding"
     },
     {
       id: "gal-3",
-      url: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80",
-      caption: "Intricate Bridal Henna & Joy",
+      url: "assets/images/mehendi_ceremony.jpg",
+      caption: "Intricate Bridal Mehendi & Festivities",
       category: "mehendi"
     },
     {
       id: "gal-4",
-      url: "https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?auto=format&fit=crop&w=1000&q=80",
-      caption: "Royal Mandap Radiance & Diya Glow",
-      category: "wedding"
+      url: "assets/images/haldi_ceremony.jpg",
+      caption: "Joyous Turmeric & Marigold Flower Shower",
+      category: "haldi"
     },
     {
       id: "gal-5",
-      url: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80",
-      caption: "Grand Celebrations & Champagne Toasts",
+      url: "assets/images/reception_event.jpg",
+      caption: "Grand Reception Gala & Ballroom Entrance",
       category: "reception"
     },
     {
       id: "gal-6",
-      url: "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=1000&q=80",
-      caption: "Turmeric Glow & Sunlit Laughter",
-      category: "haldi"
+      url: "assets/images/hero_wedding.jpg",
+      caption: "Together Forever in Love and Blessings",
+      category: "wedding"
     }
   ],
   blessings: [

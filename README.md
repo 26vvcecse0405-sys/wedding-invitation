@@ -91,7 +91,12 @@ You can also simply double-click `index.html` to open it directly in any modern 
 │   └── audio.js            # Web Audio API Indian Shehnai synthesizer
 └── assets/
     └── images/
-        └── hero_wedding.jpg# 8K Royal Indian wedding couple hero photo
+        ├── hero_wedding.jpg       # Royal Indian wedding couple hero photo
+        ├── royal_couple.jpg       # Bride & groom in palace courtyard
+        ├── haldi_ceremony.jpg     # Joyful Haldi celebration & marigold flowers
+        ├── mehendi_ceremony.jpg   # Intricate Mehendi henna art & lehenga
+        ├── royal_mandap.jpg       # Opulent royal mandap by twilight
+        └── reception_event.jpg    # Grand ballroom reception gala
 ```
 
 ---
