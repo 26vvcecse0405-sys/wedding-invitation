@@ -1,0 +1,12 @@
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*~
+.vscode/
+.idea/
+
+# Logs and scratch
+*.log
+scratch/

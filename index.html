@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation | Siddharth &amp; Ananya</title>
+  
+  <!-- SEO & Social Sharing Metadata -->
+  <meta name="description" content="Together with our families, we cordially invite you to celebrate the royal wedding of Siddharth and Ananya. Explore wedding events, ceremonies, venues, countdown, and RSVP.">
+  <meta name="keywords" content="Indian wedding invitation, royal wedding, Haldi, Mehendi, Sangeet, Hindu wedding, Vivah Sanskar">
+  <meta name="author" content="The Sharma &amp; Verma Families">
+  <meta name="theme-color" content="#3D0715">
+
+  <!-- Open Graph / WhatsApp Preview -->
+  <meta property="og:title" content="Wedding Invitation | Siddharth &amp; Ananya">
+  <meta property="og:description" content="Together with our families, we joyfully invite you to celebrate our wedding. Explore our digital invitation card, ceremonies, and RSVP.">
+  <meta property="og:image" content="assets/images/hero_wedding.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Floating Falling Petals Canvas -->
+  <canvas id="petals-canvas"></canvas>
+
+  <!-- Edit Mode Banner (Shows when edit mode is toggled) -->
+  <div class="edit-mode-banner">
+    <i class="fas fa-edit"></i> Edit Mode Active &mdash; You can customize any wedding detail!
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-notice" class="toast-notice">Notice</div>
+
+  <!-- FLOATING ACTIONS STACK -->
+  <aside class="floating-actions-stack" aria-label="Floating Controls">
+    <!-- Music Player Toggle -->
+    <button id="music-toggle-btn" class="floating-btn" title="Play Indian Wedding Shehnai Music" aria-label="Toggle Shehnai Music">
+      <div class="soundwaves" id="soundwaves-indicator">
+        <span class="soundwave-bar"></span>
+        <span class="soundwave-bar"></span>
+        <span class="soundwave-bar"></span>
+        <span class="soundwave-bar"></span>
+      </div>
+      <span class="btn-tooltip">Shehnai Music</span>
+    </button>
+
+    <!-- Falling Petals Toggle -->
+    <button id="petals-toggle-btn" class="floating-btn" title="Toggle Falling Flower Petals" aria-label="Toggle Flower Petals">
+      <i class="fas fa-seedling"></i>
+      <span class="btn-tooltip">Flower Shower</span>
+    </button>
+
+    <!-- Quick Customizer Drawer -->
+    <button id="quick-customizer-btn" class="floating-btn" onclick="openQuickEditModal()" title="Customize Invitation Details" aria-label="Customize Invitation">
+      <i class="fas fa-sliders-h"></i>
+      <span class="btn-tooltip">Customize Invite</span>
+    </button>
+
+    <!-- WhatsApp Share -->
+    <button class="floating-btn" onclick="shareOnWhatsApp()" title="Share via WhatsApp" aria-label="Share via WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+      <span class="btn-tooltip">Share Invite</span>
+    </button>
+  </aside>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <nav class="royal-nav" id="royal-nav">
+    <div class="nav-container">
+      <a href="#hero" class="nav-brand">
+        <!-- Auspicious Kalash SVG Motif -->
+        <svg class="nav-logo-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12,2A3,3 0 0,0 9,5C9,6.08 9.58,7.03 10.43,7.56C6.54,8.19 3.5,11.53 3.5,15.64C3.5,20.25 7.25,24 12,24C16.75,24 20.5,20.25 20.5,15.64C20.5,11.53 17.46,8.19 13.57,7.56C14.42,7.03 15,6.08 15,5A3,3 0 0,0 12,2M12,4A1,1 0 0,1 13,5A1,1 0 0,1 12,6A1,1 0 0,1 11,5A1,1 0 0,1 12,4M12,9.5C15.31,9.5 18,12.19 18,15.5C18,18.81 15.31,21.5 12,21.5C8.69,21.5 6,18.81 6,15.5C6,12.19 8.69,9.5 12,9.5Z"/>
+        </svg>
+        <span class="nav-title">Royal Vivah</span>
+      </a>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#hero" class="nav-link">Home</a></li>
+        <li><a href="#invitation" class="nav-link">Invitation</a></li>
+        <li><a href="#events" class="nav-link">Ceremonies</a></li>
+        <li><a href="#details" class="nav-link">Venue &amp; Details</a></li>
+        <li><a href="#gallery" class="nav-link">Moments</a></li>
+        <li><a href="#rsvp-blessings" class="nav-link">RSVP &amp; Blessings</a></li>
+        <li>
+          <button id="edit-mode-toggle-btn" class="nav-edit-mode-toggle" onclick="toggleEditMode()" title="Toggle Inline Edit Mode">
+            <i class="fas fa-edit"></i> Edit Details
+          </button>
+        </li>
+      </ul>
+
+      <button class="nav-toggle-btn" id="nav-toggle-btn" aria-label="Toggle Mobile Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==========================================================================
+       1. HERO SECTION
+       ========================================================================== -->
+  <header class="hero-section" id="hero">
+    <div class="hero-background-media">
+      <img src="assets/images/hero_wedding.jpg" alt="Royal Indian Wedding Couple" class="hero-bg-img" id="hero-bg-image">
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-container">
+      <div class="hero-arch-card">
+        <!-- Auspicious Vedic Shloka Header -->
+        <div class="auspicious-shloka-tag">
+          <span class="auspicious-symbol">&#2384;</span>
+          <span>|| श्री गणेशाय नमः ||</span>
+          <span class="auspicious-symbol">&#2384;</span>
+        </div>
+
+        <p class="hero-subtitle">Together with Our Families</p>
+        <h1 class="hero-main-title gold-text-shimmer">Wedding Invitation</h1>
+
+        <!-- Bride & Groom Names -->
+        <div class="couple-names-wrap">
+          <span class="hero-groom-name gold-text-bright" id="hero-groom-display">Siddharth</span>
+          <span class="couple-ampersand">&amp;</span>
+          <span class="hero-bride-name gold-text-bright" id="hero-bride-display">Ananya</span>
+        </div>
+
+        <!-- Wedding Date Display -->
+        <div class="hero-wedding-date">
+          <i class="far fa-calendar-check"></i>
+          <span id="hero-date-display">Sunday, 28th February 2027</span>
+        </div>
+
+        <!-- Live Countdown Timer -->
+        <div class="countdown-container" aria-label="Countdown to Wedding">
+          <p class="countdown-label">Counting Down to the Sacred Pheras</p>
+          <div class="countdown-grid">
+            <div class="countdown-box">
+              <span class="countdown-num" id="days-count">00</span>
+              <span class="countdown-unit">Days</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-num" id="hours-count">00</span>
+              <span class="countdown-unit">Hours</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-num" id="minutes-count">00</span>
+              <span class="countdown-unit">Minutes</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-num" id="seconds-count">00</span>
+              <span class="countdown-unit">Seconds</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero CTA Button -->
+        <div>
+          <a href="#invitation" class="btn-royal-primary" id="explore-btn">
+            <span>Explore Our Wedding Invitation</span>
+            <i class="fas fa-chevron-down"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. WEDDING INVITATION SECTION
+       ========================================================================== -->
+  <section class="section-wrapper cream-bg" id="invitation">
+    <div class="section-header">
+      <span class="section-subheading">With Love &amp; Joy</span>
+      <h2 class="section-heading">Cordially Invited</h2>
+      <div class="traditional-divider">
+        <span class="divider-line"></span>
+        <span class="divider-motif">&#10047;</span>
+        <span class="divider-line"></span>
+      </div>
+    </div>
+
+    <div class="invitation-card-container">
+      <article class="royal-invitation-card">
+        <!-- Double Border Decoration Frames -->
+        <div class="invitation-card-border-frame">
+          <svg class="corner-flourish corner-tl" viewBox="0 0 50 50">
+            <path d="M0,0 L50,0 C30,10 10,30 0,50 Z" fill="currentColor"/>
+          </svg>
+          <svg class="corner-flourish corner-tr" viewBox="0 0 50 50">
+            <path d="M0,0 L50,0 C30,10 10,30 0,50 Z" fill="currentColor"/>
+          </svg>
+          <svg class="corner-flourish corner-br" viewBox="0 0 50 50">
+            <path d="M0,0 L50,0 C30,10 10,30 0,50 Z" fill="currentColor"/>
+          </svg>
+          <svg class="corner-flourish corner-bl" viewBox="0 0 50 50">
+            <path d="M0,0 L50,0 C30,10 10,30 0,50 Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="invitation-card-inner-frame"></div>
+
+        <!-- Lord Ganesha Symbol -->
+        <div class="invitation-ganesha-emblem">
+          <svg viewBox="0 0 64 64" fill="currentColor">
+            <path d="M32 4c-5.5 0-10 4.5-10 10 0 3.1 1.4 5.9 3.6 7.7-1.1 1.4-1.8 3.2-1.8 5.1 0 4.2 3.1 7.7 7.2 8.2v7c-3.5 0-6.7 1.4-9 3.7-2.3-2.3-5.5-3.7-9-3.7-7.2 0-13 5.8-13 13 0 1.7 1.3 3 3 3s3-1.3 3-3c0-3.9 3.1-7 7-7s7 3.1 7 7c0 1.7 1.3 3 3 3s3-1.3 3-3c0-1.8.7-3.5 1.9-4.8 2.2-2.3 5.3-3.7 8.7-3.7 6.1 0 11-4.9 11-11v-4.5c2.5-1.1 4.2-3.6 4.2-6.5 0-3.9-3.1-7-7-7zm-4 10c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"/>
+          </svg>
+        </div>
+
+        <p class="invitation-header-text">॥ वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ॥<br>॥ निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</p>
+
+        <!-- Parents & Family Host Names -->
+        <div class="invitation-parents-block">
+          <p class="invitation-parents-name" id="card-parents-groom">Smt. Rekha &amp; Shri Vikram Verma</p>
+          <small>&amp;</small>
+          <p class="invitation-parents-name" id="card-parents-bride">Smt. Sunita &amp; Shri Rajesh Sharma</p>
+        </div>
+
+        <!-- Invitation Message -->
+        <p class="invitation-body-message" id="invitation-message-text">
+          "With immense joy and the blessings of our families, we cordially invite you to celebrate the wedding of our beloved couple. Your presence and blessings will make this special occasion even more memorable."
+        </p>
+
+        <!-- Prominent Couple Presentation -->
+        <div class="invitation-couple-showcase">
+          <div class="invitation-name-box">
+            <h3 class="invitation-name-title" id="card-groom-name">Siddharth Verma</h3>
+            <p class="invitation-name-desc" id="card-groom-title">Son of Smt. Rekha &amp; Shri Vikram Verma</p>
+          </div>
+
+          <div class="invitation-with-connector">
+            <span>Weds</span>
+          </div>
+
+          <div class="invitation-name-box">
+            <h3 class="invitation-name-title" id="card-bride-name">Ananya Sharma</h3>
+            <p class="invitation-name-desc" id="card-bride-title">Daughter of Smt. Sunita &amp; Shri Rajesh Sharma</p>
+          </div>
+        </div>
+
+        <p class="invitation-closing-line">Warmly Invited By:</p>
+        <p class="invitation-family-signature" id="card-family-names">The Sharma &amp; Verma Families</p>
+
+        <!-- Wax Seal Stamp -->
+        <div class="wax-seal-wrapper">
+          <div class="royal-wax-seal" title="Royal Wedding Seal">
+            <span>S &hearts; A</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. WEDDING EVENTS SECTION
+       ========================================================================== -->
+  <section class="section-wrapper maroon-bg" id="events">
+    <div class="section-header">
+      <span class="section-subheading">Auspicious Celebrations</span>
+      <h2 class="section-heading">Wedding Ceremonies</h2>
+      <div class="traditional-divider">
+        <span class="divider-line"></span>
+        <span class="divider-motif">&#10047;</span>
+        <span class="divider-line"></span>
+      </div>
+    </div>
+
+    <!-- Events Controls Bar -->
+    <div class="events-controls-bar">
+      <span class="events-count-badge" id="events-count-badge">4 Auspicious Ceremonies</span>
+      <button class="btn-royal-primary btn-sm" onclick="openAddEventModal()">
+        <i class="fas fa-plus"></i> Add Ceremony / Event
+      </button>
+    </div>
+
+    <!-- Events Cards Grid -->
+    <div class="events-grid" id="events-grid-container">
+      <!-- Dynamically rendered via app.js -->
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. WEDDING DETAILS & DIRECTIONS SECTION
+       ========================================================================== -->
+  <section class="section-wrapper cream-bg" id="details">
+    <div class="section-header">
+      <span class="section-subheading">Important Information</span>
+      <h2 class="section-heading">Wedding Details &amp; Venue</h2>
+      <div class="traditional-divider">
+        <span class="divider-line"></span>
+        <span class="divider-motif">&#10047;</span>
+        <span class="divider-line"></span>
+      </div>
+    </div>
+
+    <div class="wedding-details-container">
+      <!-- Left: Wedding Summary Card -->
+      <article class="details-summary-card">
+        <div class="details-card-header">
+          <i class="fas fa-heart"></i>
+          <h3 class="details-card-title">Celebration Overview</h3>
+        </div>
+
+        <div class="details-rows-list">
+          <div class="details-row-item">
+            <span class="details-label"><i class="fas fa-female"></i> Bride's Name</span>
+            <span class="details-value" id="detail-bride-val">Ananya Sharma</span>
+          </div>
+          <div class="details-row-item">
+            <span class="details-label"><i class="fas fa-male"></i> Groom's Name</span>
+            <span class="details-value" id="detail-groom-val">Siddharth Verma</span>
+          </div>
+          <div class="details-row-item">
+            <span class="details-label"><i class="far fa-calendar-alt"></i> Wedding Date</span>
+            <span class="details-value" id="detail-wedding-date-val">Sunday, 28th February 2027</span>
+          </div>
+          <div class="details-row-item">
+            <span class="details-label"><i class="fas fa-glass-cheers"></i> Reception Date</span>
+            <span class="details-value" id="detail-reception-date-val">Monday, 1st March 2027</span>
+          </div>
+          <div class="details-row-item">
+            <span class="details-label"><i class="fas fa-map-pin"></i> Venue</span>
+            <span class="details-value" id="detail-venue-val">The Grand Regal Palace &amp; Heritage Resort</span>
+          </div>
+        </div>
+
+        <!-- Family Invitation Message -->
+        <div>
+          <span class="details-label" style="margin-bottom: 6px; display: block;">
+            <i class="fas fa-quote-left"></i> Family Invitation Message
+          </span>
+          <p class="family-message-quote" id="detail-family-quote">
+            "Two lives, two souls, united in love and blessed by the divine. We await your gracious company as we embark on this eternal journey together."
+          </p>
+        </div>
+      </article>
+
+      <!-- Right: Venue & Google Maps Directions Card -->
+      <article class="venue-location-card">
+        <div class="details-card-header">
+          <i class="fas fa-map-marked-alt"></i>
+          <h3 class="details-card-title">Venue &amp; Location</h3>
+        </div>
+
+        <h4 class="venue-name-highlight" id="venue-name-val">The Grand Regal Palace &amp; Heritage Resort</h4>
+        <p class="venue-address-text" id="venue-address-val">Palace Road, Near Fatehsagar Lake, Udaipur, Rajasthan 313001, India</p>
+
+        <!-- Interactive Google Map Frame -->
+        <div class="map-interactive-preview">
+          <iframe id="venue-map-iframe" src="https://maps.google.com/maps?q=Fatehsagar%20Lake%20Udaipur%20Rajasthan&t=&z=14&ie=UTF8&iwloc=&output=embed" title="Venue Google Map Preview" loading="lazy"></iframe>
+        </div>
+
+        <div class="venue-actions-wrap">
+          <!-- Get Directions Button (Opens Google Maps) -->
+          <a href="https://www.google.com/maps/search/?api=1&query=Fatehsagar+Lake+Udaipur+Rajasthan" target="_blank" rel="noopener noreferrer" class="btn-royal-primary" id="get-directions-btn">
+            <i class="fas fa-location-arrow"></i>
+            <span>Get Directions</span>
+          </a>
+          <button class="btn-royal-outline" onclick="openQuickEditModal()">
+            <i class="fas fa-pen"></i> Edit Venue Address
+          </button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. PHOTO GALLERY SECTION
+       ========================================================================== -->
+  <section class="section-wrapper maroon-bg" id="gallery">
+    <div class="section-header">
+      <span class="section-subheading">Cherished Memories</span>
+      <h2 class="section-heading">Couple Photo Gallery</h2>
+      <div class="traditional-divider">
+        <span class="divider-line"></span>
+        <span class="divider-motif">&#10047;</span>
+        <span class="divider-line"></span>
+      </div>
+    </div>
+
+    <!-- Gallery Controls & Upload Bar -->
+    <div class="gallery-controls-bar">
+      <div class="gallery-filters">
+        <button class="gallery-filter-btn active" data-filter="all">All Photos</button>
+        <button class="gallery-filter-btn" data-filter="pre-wedding">Pre-Wedding</button>
+        <button class="gallery-filter-btn" data-filter="haldi">Haldi</button>
+        <button class="gallery-filter-btn" data-filter="mehendi">Mehendi</button>
+        <button class="gallery-filter-btn" data-filter="wedding">Wedding</button>
+        <button class="gallery-filter-btn" data-filter="reception">Reception</button>
+      </div>
+
+      <div class="gallery-upload-btn-wrap">
+        <label for="gallery-file-input" class="btn-royal-primary btn-sm" style="cursor: pointer; margin: 0;">
+          <i class="fas fa-cloud-upload-alt"></i> Upload Photographs
+        </label>
+        <input type="file" id="gallery-file-input" multiple accept="image/*">
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid" id="gallery-grid-container">
+      <!-- Rendered via app.js -->
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. INTERACTIVE RSVP & GUESTBOOK BLESSINGS SECTION
+       ========================================================================== -->
+  <section class="section-wrapper cream-bg" id="rsvp-blessings">
+    <div class="section-header">
+      <span class="section-subheading">Celebrate With Us</span>
+      <h2 class="section-heading">RSVP &amp; Blessings Wall</h2>
+      <div class="traditional-divider">
+        <span class="divider-line"></span>
+        <span class="divider-motif">&#10047;</span>
+        <span class="divider-line"></span>
+      </div>
+    </div>
+
+    <div class="interactive-section-grid">
+      <!-- Left: Interactive RSVP Form -->
+      <article class="rsvp-card-wrapper">
+        <div class="details-card-header">
+          <i class="fas fa-envelope-open-text"></i>
+          <div>
+            <h3 class="details-card-title">Kindly RSVP</h3>
+            <p style="font-size: 0.88rem; color: #7A695B;">Please confirm your attendance by 15th February 2027</p>
+          </div>
+        </div>
+
+        <form id="wedding-rsvp-form">
+          <div class="form-group">
+            <label for="rsvp-name" class="form-label">Full Name *</label>
+            <input type="text" id="rsvp-name" class="form-control" placeholder="e.g. Dr. Rajesh Khanna &amp; Family" required>
+          </div>
+
+          <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <label for="rsvp-contact" class="form-label">Phone / Email</label>
+              <input type="text" id="rsvp-contact" class="form-control" placeholder="+91 98765 43210">
+            </div>
+            <div>
+              <label for="rsvp-guests" class="form-label">Total Guests Attending</label>
+              <select id="rsvp-guests" class="form-control">
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5+">5+ (Family)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Ceremonies You Will Grace</label>
+            <div class="events-checkbox-group">
+              <label class="checkbox-pill-label">
+                <input type="checkbox" name="attending-events" value="Haldi" checked>
+                <span>Haldi Ceremony</span>
+              </label>
+              <label class="checkbox-pill-label">
+                <input type="checkbox" name="attending-events" value="Mehendi" checked>
+                <span>Mehendi &amp; Sangeet</span>
+              </label>
+              <label class="checkbox-pill-label">
+                <input type="checkbox" name="attending-events" value="Wedding" checked>
+                <span>Wedding Pheras</span>
+              </label>
+              <label class="checkbox-pill-label">
+                <input type="checkbox" name="attending-events" value="Reception" checked>
+                <span>Royal Reception</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="rsvp-food" class="form-label">Cuisine &amp; Dietary Preference</label>
+            <select id="rsvp-food" class="form-control">
+              <option value="Rajasthani & North Indian Royal Feast">Rajasthani &amp; North Indian Royal Feast</option>
+              <option value="Jain Vegetarian (Strict)">Jain Vegetarian (Strict)</option>
+              <option value="Pure Vegetarian">Pure Vegetarian</option>
+              <option value="Vegan">Vegan</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="rsvp-notes" class="form-label">Personal Note for the Couple</label>
+            <textarea id="rsvp-notes" class="form-control" rows="2" placeholder="Looking forward to celebrating this auspicious union!"></textarea>
+          </div>
+
+          <button type="submit" class="btn-royal-primary" style="width: 100%;">
+            <i class="fas fa-paper-plane"></i> Confirm Attendance (RSVP)
+          </button>
+        </form>
+      </article>
+
+      <!-- Right: Interactive Blessings & Guestbook Wall -->
+      <article class="blessings-card-wrapper">
+        <div class="details-card-header">
+          <i class="fas fa-hand-holding-heart"></i>
+          <div>
+            <h3 class="details-card-title">Auspicious Blessings Wall</h3>
+            <p style="font-size: 0.88rem; color: #7A695B;">Leave your love &amp; wishes for the bride &amp; groom</p>
+          </div>
+        </div>
+
+        <div class="blessings-wall-container">
+          <!-- Blessings Scroll List -->
+          <div class="blessings-list-scroll" id="blessings-wall-list">
+            <!-- Rendered dynamically via app.js -->
+          </div>
+
+          <!-- Add Blessing Form -->
+          <form id="wedding-blessing-form" style="margin-top: auto; border-top: 1px solid rgba(212,175,55,0.25); padding-top: 20px;">
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 12px; margin-bottom: 12px;">
+              <input type="text" id="blessing-name" class="form-control" placeholder="Your Name" required>
+              <select id="blessing-tag-select" class="form-control">
+                <option value="Elder Blessings 🌸">Elder Blessings 🌸</option>
+                <option value="Heartfelt Wishes 💖" selected>Heartfelt Wishes 💖</option>
+                <option value="Friends & Fun 🎉">Friends &amp; Fun 🎉</option>
+                <option value="Family Love ✨">Family Love ✨</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 12px;">
+              <textarea id="blessing-message" class="form-control" rows="2" placeholder="Write your heartfelt blessing or warm wish for Siddharth &amp; Ananya..." required></textarea>
+            </div>
+            <button type="submit" class="btn-royal-outline" style="width: 100%;">
+              <i class="fas fa-feather-alt"></i> Post Your Blessing
+            </button>
+          </form>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="royal-footer">
+    <div class="footer-container">
+      <div class="auspicious-shloka-tag" style="justify-content: center;">
+        <span class="auspicious-symbol">&#2384;</span>
+        <span>शुभ विवाह</span>
+        <span class="auspicious-symbol">&#2384;</span>
+      </div>
+
+      <p class="footer-names" id="footer-couple-names">Siddharth &amp; Ananya</p>
+      
+      <p class="footer-shloka">
+        "माङ्गल्यं तन्तुनानेन लोकजीवनहेतुना।<br>
+        कण्ठे बध्नामि सुभगे सञ्जीव शरदः शतम्॥"
+      </p>
+
+      <div class="footer-social-links">
+        <button class="footer-social-btn" onclick="shareOnWhatsApp()" title="Share on WhatsApp" aria-label="Share WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </button>
+        <button class="footer-social-btn" onclick="copyInvitationLink()" title="Copy Invitation Link" aria-label="Copy Link">
+          <i class="fas fa-link"></i>
+        </button>
+        <button class="footer-social-btn" onclick="window.print()" title="Print Invitation Card" aria-label="Print Card">
+          <i class="fas fa-print"></i>
+        </button>
+      </div>
+
+      <p class="footer-copyright">
+        &copy; 2027 The Sharma &amp; Verma Families. Created with love for our brother's royal wedding celebration.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS
+       ========================================================================== -->
+
+  <!-- 1. Add / Edit Event Modal -->
+  <div class="modal-overlay" id="event-editor-modal" role="dialog" aria-modal="true" aria-labelledby="event-modal-title">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal('event-editor-modal')" aria-label="Close Modal">&times;</button>
+      <h3 class="modal-title" id="event-modal-title">Edit Ceremony Details</h3>
+      <p class="modal-subtitle">Update ceremony time, date, venue, and description</p>
+
+      <form id="event-editor-form" onsubmit="saveEventForm(event)">
+        <input type="hidden" id="event-form-id">
+
+        <div class="form-group">
+          <label for="event-form-title" class="form-label">Ceremony Title *</label>
+          <input type="text" id="event-form-title" class="form-control" placeholder="e.g. Sangeet Night" required>
+        </div>
+
+        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div>
+            <label for="event-form-type" class="form-label">Ceremony Type</label>
+            <select id="event-form-type" class="form-control">
+              <option value="haldi">Haldi (Turmeric Yellow)</option>
+              <option value="mehendi">Mehendi (Henna Emerald)</option>
+              <option value="wedding" selected>Wedding (Royal Maroon)</option>
+              <option value="reception">Reception (Regal Purple)</option>
+              <option value="sangeet">Sangeet (Festive Gold)</option>
+            </select>
+          </div>
+          <div>
+            <label for="event-form-subtitle" class="form-label">Subtitle / Theme</label>
+            <input type="text" id="event-form-subtitle" class="form-control" placeholder="e.g. Traditional Rituals">
+          </div>
+        </div>
+
+        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div>
+            <label for="event-form-date" class="form-label">Date String *</label>
+            <input type="text" id="event-form-date" class="form-control" placeholder="e.g. Sunday, 28th Feb 2027" required>
+          </div>
+          <div>
+            <label for="event-form-time" class="form-label">Time *</label>
+            <input type="text" id="event-form-time" class="form-control" placeholder="e.g. 06:00 PM Onwards" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="event-form-venue" class="form-label">Ceremony Venue *</label>
+          <input type="text" id="event-form-venue" class="form-control" placeholder="e.g. Main Courtyard, The Grand Palace" required>
+        </div>
+
+        <div class="form-group">
+          <label for="event-form-desc" class="form-label">Event Description</label>
+          <textarea id="event-form-desc" class="form-control" rows="3" placeholder="Brief auspicious rituals and expectations..."></textarea>
+        </div>
+
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+          <button type="button" class="btn-royal-outline" onclick="closeModal('event-editor-modal')">Cancel</button>
+          <button type="submit" class="btn-royal-primary">Save Ceremony</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Quick Customizer Modal (Brother / Family Live Customizer) -->
+  <div class="modal-overlay" id="quick-customizer-modal" role="dialog" aria-modal="true" aria-labelledby="customizer-modal-title">
+    <div class="modal-card" style="max-width: 680px;">
+      <button class="modal-close-btn" onclick="closeModal('quick-customizer-modal')" aria-label="Close Modal">&times;</button>
+      <h3 class="modal-title" id="customizer-modal-title">Customize Wedding Invitation</h3>
+      <p class="modal-subtitle">Easily edit the couple names, family names, dates, venue, and invitation message</p>
+
+      <form id="quick-customizer-form" onsubmit="saveQuickEditModal(event)">
+        <!-- Couple Section -->
+        <div style="background: rgba(212,175,55,0.08); padding: 16px; border-radius: var(--radius-sm); margin-bottom: 20px; border: 1px solid rgba(212,175,55,0.3);">
+          <h4 style="font-family: var(--font-serif-royal); color: var(--color-maroon-800); margin-bottom: 12px;">Groom &amp; Bride Names</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px;">
+            <div>
+              <label for="edit-groom-name" class="form-label">Groom First Name</label>
+              <input type="text" id="edit-groom-name" class="form-control" required>
+            </div>
+            <div>
+              <label for="edit-groom-fullname" class="form-label">Groom Full Name</label>
+              <input type="text" id="edit-groom-fullname" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label for="edit-groom-title" class="form-label">Groom Parents / Title</label>
+            <input type="text" id="edit-groom-title" class="form-control" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px;">
+            <div>
+              <label for="edit-bride-name" class="form-label">Bride First Name</label>
+              <input type="text" id="edit-bride-name" class="form-control" required>
+            </div>
+            <div>
+              <label for="edit-bride-fullname" class="form-label">Bride Full Name</label>
+              <input type="text" id="edit-bride-fullname" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="edit-bride-title" class="form-label">Bride Parents / Title</label>
+            <input type="text" id="edit-bride-title" class="form-control" required>
+          </div>
+        </div>
+
+        <!-- Dates Section -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
+          <div class="form-group">
+            <label for="edit-wedding-date" class="form-label">Wedding Date &amp; Time (Countdown)</label>
+            <input type="datetime-local" id="edit-wedding-date" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-wedding-date-str" class="form-label">Wedding Date Display String</label>
+            <input type="text" id="edit-wedding-date-str" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-reception-date-str" class="form-label">Reception Date Display String</label>
+          <input type="text" id="edit-reception-date-str" class="form-control" required>
+        </div>
+
+        <!-- Venue Section -->
+        <div class="form-group">
+          <label for="edit-venue-name" class="form-label">Venue Name</label>
+          <input type="text" id="edit-venue-name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-venue-address" class="form-label">Complete Venue Address (For Google Maps)</label>
+          <input type="text" id="edit-venue-address" class="form-control" required>
+        </div>
+
+        <!-- Family Message -->
+        <div class="form-group">
+          <label for="edit-family-names" class="form-label">Family Names (Host Signature)</label>
+          <input type="text" id="edit-family-names" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-invitation-msg" class="form-label">Warm Invitation Message</label>
+          <textarea id="edit-invitation-msg" class="form-control" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-family-quote" class="form-label">Family Blessing Quote</label>
+          <textarea id="edit-family-quote" class="form-control" rows="2" required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 28px; flex-wrap: wrap; gap: 12px;">
+          <button type="button" class="btn-royal-outline btn-sm" onclick="resetToDefaultInvitation()" style="color: #A93226; border-color: #E74C3C;">
+            <i class="fas fa-undo"></i> Reset to Sample
+          </button>
+          <div style="display: flex; gap: 12px;">
+            <button type="button" class="btn-royal-outline" onclick="closeModal('quick-customizer-modal')">Cancel</button>
+            <button type="submit" class="btn-royal-primary">Save All Changes</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. RSVP Success Celebration Modal -->
+  <div class="modal-overlay" id="rsvp-success-modal" role="dialog" aria-modal="true">
+    <div class="modal-card" style="text-align: center; max-width: 480px;">
+      <div style="font-size: 3.5rem; color: var(--color-gold-500); margin-bottom: 16px;">
+        &#10024; &#129346; &#10024;
+      </div>
+      <h3 class="modal-title">Dhanyawaad! Thank You!</h3>
+      <p style="font-family: var(--font-script); font-size: 2.2rem; color: var(--color-maroon-700); margin: 8px 0;" id="rsvp-guest-name-badge">Dear Guest</p>
+      <p style="color: #4A3A32; font-size: 1.15rem; line-height: 1.6; margin-bottom: 24px;">
+        Your presence has been warmly confirmed for our royal wedding celebration. Our families look forward to welcoming you with folded hands!
+      </p>
+      <button class="btn-royal-primary" onclick="closeModal('rsvp-success-modal')">
+        Jai Shree Krishna &bull; Close
+      </button>
+    </div>
+  </div>
+
+  <!-- 4. Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal" role="dialog" aria-modal="true">
+    <div class="lightbox-content-wrap">
+      <button class="lightbox-close-btn" onclick="closeLightbox()" aria-label="Close Lightbox">&times;</button>
+      <button class="lightbox-nav-btn lightbox-prev" onclick="navLightbox(-1)" aria-label="Previous Image">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <img src="" alt="Wedding Memory" class="lightbox-img" id="lightbox-img">
+      <p class="lightbox-caption-text" id="lightbox-caption"></p>
+      <button class="lightbox-nav-btn lightbox-next" onclick="navLightbox(1)" aria-label="Next Image">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
